@@ -1,0 +1,11 @@
+sudo: required
+services: 
+  - docker
+
+before_install:
+  - docker build -t craigcliff/docker-react-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true craigcliff/docker-react-app npm run test -- --coverage
+
+language: generic 
